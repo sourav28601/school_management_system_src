@@ -1,0 +1,8 @@
+school id 2
+class     3
+subject   6
+
+class_school_id = class_school.where (2 and 3)
+
+
+class_school_id and subject_id

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/public/admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/public/admin/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <%- include('../../layouts/header.ejs') %>
+            <%- include('../../layouts/sidebar.ejs') %>
+
+                <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                    
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <!-- <h3 class="card-title">Submit Daily Attendance</h3> -->
+                                            <!-- <button type="button" class="btn btn-primary mb-1" data-toggle="modal"
+                                                data-target="#createModal" style="float: left;">
+                                                Assign Subjects To Teacher</button> -->
+                                                <h3 class="card-title"> All Assign Schools, Classes and Subjects To Teachers</h3> <br><br>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                          <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#Sno.</th>
+                                                    <th>Teacher Name</th>
+                                                    <th>Subject Name</th>
+                                                    <th>Class Name</th>
+                                                    <th>School Name</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if (allteachertosubject.length > 0) { %> <!-- Check if there's any data available -->
+                                                    <% allteachertosubject.forEach(teacher => { %>
+                                                        <tr>
+                                                            <td><%= teacher.id %></td>
+                                                            <td><%= teacher.name %></td>
+                                                            <td>
+                                                                <ul>
+                                                                    <% teacher.subjects.forEach(subject => { %>
+                                                                        <li><%= subject.subject_name %></li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <% teacher.Classes.forEach(classObj => { %>
+                                                                        <li>
+                                                                            <strong>Class:</strong> <%= classObj.class_name %><br>
+                                                                        </li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <% teacher.Classes.forEach(classObj => { %>
+                                                                        <li>
+                                                                            <% if (classObj.Schools.length > 0) { %>
+                                                                                <strong>School:</strong> <%= classObj.Schools[0].name %>
+                                                                            <% } else { %>
+                                                                                No School Assigned
+                                                                            <% } %>
+                                                                        </li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    <% }); %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="5">No data available</td>
+                                                    </tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                        
+                                          
+                                         
+
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+                <!-- Control Sidebar -->
+                <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                    <div class="p-3">
+                        <h5>Title</h5>
+                        <p>Sidebar content</p>
+                    </div>
+                </aside>
+                <!-- /.control-sidebar -->
+
+                <!-- Main Footer -->
+                <footer class="main-footer">
+                    <!-- To the right -->
+                    <div class="float-right d-none d-sm-inline">
+                        Anything you want
+                    </div>
+                    <!-- Default to the left -->
+                    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All
+                    rights
+                    reserved.
+                </footer>
+    </div>
+  
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="/public/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/public/admin/dist/js/adminlte.min.js"></script>
+</body>
+
+</html>
+
+
+
